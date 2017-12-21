@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="LIUJF" />
+
+
+
+<meta name="description" content="PHP基础应用以及MYSQL的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP基础">
+<meta property="og:url" content="git@github.com:gitRiven/liujianfeng.git/2017/12/21/PHP基础/index.html">
+<meta property="og:site_name" content="gitRiven&#39;s Blog">
+<meta property="og:description" content="PHP基础应用以及MYSQL的使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T11:21:02.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP基础">
+<meta name="twitter:description" content="PHP基础应用以及MYSQL的使用">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/apple-touch-icon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>PHP基础 | gitRiven&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">LIUJF</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" href="#" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">LIUJF</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">LIUJF</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="#" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-PHP基础" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/21/PHP基础/" class="article-date">
+      <time datetime="2017-12-21T11:20:20.000Z" itemprop="datePublished">2017-12-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP基础
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="PHP基础（超文本预处理器）"><a href="#PHP基础（超文本预处理器）" class="headerlink" title="PHP基础（超文本预处理器）"></a>PHP基础（超文本预处理器）</h1><h2 id="软件构架"><a href="#软件构架" class="headerlink" title="软件构架"></a>软件构架</h2><h3 id="B-S-Browser浏览器-Server服务器"><a href="#B-S-Browser浏览器-Server服务器" class="headerlink" title="B/S(Browser浏览器/Server服务器)"></a>B/S(Browser浏览器/Server服务器)</h3><ul>
+<li>只要通过浏览器即可</li>
+<li>索要的操作系统都自带</li>
+<li>页面效果没有那么酷炫</li>
+</ul>
+<h3 id="C-S-Client客户端-Server服务器"><a href="#C-S-Client客户端-Server服务器" class="headerlink" title="C/S(Client客户端/Server服务器)"></a>C/S(Client客户端/Server服务器)</h3><ul>
+<li>如果要使用 必须先安装对应的客户端</li>
+<li>根据客户端的大小 可能要耗费不同的时间</li>
+<li>页面比较酷炫</li>
+</ul>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><h3 id="静态网站"><a href="#静态网站" class="headerlink" title="静态网站"></a>静态网站</h3><ul>
+<li>编写完成不会修改，不会改变。</li>
+</ul>
+<h3 id="动态网站"><a href="#动态网站" class="headerlink" title="动态网站"></a>动态网站</h3><ul>
+<li>根据访问的时机，访问的方式不同而不一样。</li>
+<li>动态产生html,css,js。</li>
+<li>服务器来完成。</li>
+</ul>
+<h3 id="动态网站开发的语言"><a href="#动态网站开发的语言" class="headerlink" title="动态网站开发的语言"></a>动态网站开发的语言</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java,c#,c++,python,ruby,go,node.js,erlang......php(世界上最好的语言)</span><br></pre></td></tr></table></figure>
+<h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><h3 id="安装PhpStudy"><a href="#安装PhpStudy" class="headerlink" title="安装PhpStudy"></a>安装PhpStudy</h3><ul>
+<li>安装PhpStudy，一般为磁盘根目录。<ul>
+<li>启用PhpStudy </li>
+</ul>
+</li>
+</ul>
+<h3 id="显示服务器页面"><a href="#显示服务器页面" class="headerlink" title="显示服务器页面"></a>显示服务器页面</h3><ul>
+<li>网站需要放入PhpStudy安装路径的WWW文件夹中。</li>
+<li>下载地址：<a href="http://www.phpstudy.net/download.html。" target="_blank" rel="noopener">http://www.phpstudy.net/download.html。</a></li>
+</ul>
+<ul>
+<li>使用win+R命令，输入cmd进入命令窗口，输入ipconfig可查询自己的IP地址。</li>
+</ul>
+<ul>
+<li>在浏览器中输入IP地址（或者输入默认地址127.0.0.1）。</li>
+</ul>
+<h2 id="PHP的使用"><a href="#PHP的使用" class="headerlink" title="PHP的使用"></a>PHP的使用</h2><h3 id="内容输出"><a href="#内容输出" class="headerlink" title="内容输出"></a>内容输出</h3><h4 id="普通输出及拼接字符串"><a href="#普通输出及拼接字符串" class="headerlink" title="普通输出及拼接字符串"></a>普通输出及拼接字符串</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/*如果想要输出中文需要添加如下命令</span></span><br><span class="line"><span class="comment">	header('content-type:text/html;charset=utf-8');</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'hello world;'</span> <span class="comment">//在页面中输出  hello world </span></span><br><span class="line">  <span class="comment">//注意echo结束后，一定要加“；”，否则会报错！！</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//注意：ehco是可以解析标签的，使用方法如下。(与javascript不同，拼接字符串是用‘.’来拼接)</span></span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'&lt;div&gt;'</span>.<span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="单双引号差别"><a href="#单双引号差别" class="headerlink" title="单双引号差别"></a>单双引号差别</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $sayHi = <span class="string">'hey man'</span>;</span><br><span class="line">  $name1 = <span class="string">'jack---$sayHi'</span>;</span><br><span class="line">  $name2 = <span class="string">"rose---$sayHi"</span>;</span><br><span class="line">  $name3 = <span class="string">'boy'</span>;</span><br><span class="line">  $name4 = <span class="string">"girl"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $name3,$name4; <span class="comment">//boygirl</span></span><br><span class="line">  <span class="keyword">echo</span> $name1; <span class="comment">//jack---$sayHi无法解析</span></span><br><span class="line">  <span class="keyword">echo</span> $name2; <span class="comment">//rose---hey man</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量声明及判断"><a href="#变量声明及判断" class="headerlink" title="变量声明及判断"></a>变量声明及判断</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">//判断语句</span></span><br><span class="line">  $age = <span class="number">10</span> ;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>($age&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'恭喜'</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'不对'</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//选择语句</span></span><br><span class="line">  $day = <span class="string">'礼拜一'</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">switch</span>($day)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'礼拜一'</span>:</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">'上班'</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//循环语句</span></span><br><span class="line"><span class="keyword">for</span>($i = <span class="number">0</span>;$i&lt;<span class="number">10</span>;$i++)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'你好'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>()&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">'while了'</span>;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">//设置编码格式</span></span><br><span class="line">  header(<span class="string">'content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">  <span class="comment">//5.4版本不支持这种写法</span></span><br><span class="line">  $foodArr = <span class="keyword">array</span>(<span class="string">'肉'</span>,<span class="string">'虾'</span>,<span class="string">'鸡腿'</span>,<span class="string">'西蓝花'</span>);</span><br><span class="line">  <span class="keyword">echo</span> $foodArr[<span class="number">3</span>]; <span class="comment">//  西蓝花</span></span><br><span class="line">  <span class="keyword">echo</span> $foodArr; <span class="comment">//因为数组是复杂类型，不支持echo显示  此方法显示出来的是Array</span></span><br><span class="line">  <span class="comment">//如果想输出整个数组需要用print_r()</span></span><br><span class="line">  print_r($foodArr) <span class="comment">// </span></span><br><span class="line">    </span><br><span class="line">  <span class="comment">//添加新数据</span></span><br><span class="line">    $foodArr[] = <span class="string">'xxx'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="关系型数组"><a href="#关系型数组" class="headerlink" title="关系型数组"></a>关系型数组</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$person = <span class="keyword">array</span>&#123;</span><br><span class="line">  <span class="string">'name'</span>=&gt;<span class="string">'123'</span>,</span><br><span class="line">  <span class="string">'age'</span>=&gt;<span class="string">'18'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此处打印$person的长度需要用count()</span></span><br><span class="line"><span class="keyword">echo</span> count($person) <span class="comment">//2</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="循环遍历"><a href="#循环遍历" class="headerlink" title="循环遍历"></a>循环遍历</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $person = <span class="keyword">array</span>&#123;</span><br><span class="line">  <span class="string">'name'</span>=&gt;<span class="string">'123'</span>,</span><br><span class="line">  <span class="string">'age'</span>=&gt;<span class="string">'18'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;count($person);$i++)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'循环'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="引入其他文件"><a href="#引入其他文件" class="headerlink" title="引入其他文件"></a>引入其他文件</h3><ul>
+<li>require一个文件存在错误的话，那么程序就会中断执行了，并显示致命错误。</li>
+<li>include一个文件存在错误的话，那么程序不会中端，而是继续执行，并显示一个警告错误。</li>
+<li>include有返回值，而require没有。 </li>
+<li>include_once()，require_once()会先检查目标文件的内容是不是在之前就已经导入过了，如果是的话，便不会再次重复导入同样的内容。 </li>
+<li>额外补充：<a href="http://www.jb51.net/article/22467.htm" target="_blank" rel="noopener">http://www.jb51.net/article/22467.htm</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/21/PHP基础/">PHP基础</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">LIUJF</a></p>
+        <p><span>发布时间:</span>2017-12-21, 19:20:20</p>
+        <p><span>最后更新:</span>2017-12-21, 19:21:02</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/21/PHP基础/" title="PHP基础">git@github.com:gitRiven/liujianfeng.git/2017/12/21/PHP基础/</a>
+            <span class="copy-path" data-clipboard-text="原文: git@github.com:gitRiven/liujianfeng.git/2017/12/21/PHP基础/　　作者: LIUJF" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/21/事件详解/">
+                    事件详解
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/21/面试题汇总未完善版/">
+                    面试题汇总
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP基础（超文本预处理器）"><span class="toc-number">1.</span> <span class="toc-text">PHP基础（超文本预处理器）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#软件构架"><span class="toc-number">1.1.</span> <span class="toc-text">软件构架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#B-S-Browser浏览器-Server服务器"><span class="toc-number">1.1.1.</span> <span class="toc-text">B/S(Browser浏览器/Server服务器)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-S-Client客户端-Server服务器"><span class="toc-number">1.1.2.</span> <span class="toc-text">C/S(Client客户端/Server服务器)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器"><span class="toc-number">1.2.</span> <span class="toc-text">服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态网站"><span class="toc-number">1.2.1.</span> <span class="toc-text">静态网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态网站"><span class="toc-number">1.2.2.</span> <span class="toc-text">动态网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态网站开发的语言"><span class="toc-number">1.2.3.</span> <span class="toc-text">动态网站开发的语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装流程"><span class="toc-number">1.3.</span> <span class="toc-text">安装流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装PhpStudy"><span class="toc-number">1.3.1.</span> <span class="toc-text">安装PhpStudy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示服务器页面"><span class="toc-number">1.3.2.</span> <span class="toc-text">显示服务器页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的使用"><span class="toc-number">1.4.</span> <span class="toc-text">PHP的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内容输出"><span class="toc-number">1.4.1.</span> <span class="toc-text">内容输出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#普通输出及拼接字符串"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">普通输出及拼接字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单双引号差别"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">单双引号差别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明及判断"><span class="toc-number">1.4.2.</span> <span class="toc-text">变量声明及判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义数组"><span class="toc-number">1.4.3.</span> <span class="toc-text">定义数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系型数组"><span class="toc-number">1.4.4.</span> <span class="toc-text">关系型数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环遍历"><span class="toc-number">1.4.5.</span> <span class="toc-text">循环遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引入其他文件"><span class="toc-number">1.4.6.</span> <span class="toc-text">引入其他文件</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"PHP基础　| gitRiven's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/21/事件详解/" title="上一篇: 事件详解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/21/面试题汇总未完善版/" title="下一篇: 面试题汇总">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/字符数组遍历循环/">字符数组遍历循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/事件详解/">事件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/PHP基础/">PHP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/面试题汇总未完善版/">面试题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/web页面访问的流程/">web页面访问的流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue项目相关设置&Webpack打包/">Vue项目相关设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue-Webpack安装/">Vue-Webpack安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/浏览器相关/">浏览器相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/懒加载/">懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/跨域请求的几种方式/">跨域请求的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JavaScript继承的三种方式/">JavaScript继承的三种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/常用的20个正则表达式/">常用的20个正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/原型链的理解/">原型链的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/我的VSCode设置/">我的VSCode设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/MVC&MVP&MVVM/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JQuery/">JQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Javascript/">Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML5/">HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML/">HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/CSS/">CSS</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 LIUJF
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

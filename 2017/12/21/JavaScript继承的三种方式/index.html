@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="LIUJF" />
+
+
+
+<meta name="description" content="继承方式还有很多种，本文只提及了（原型链继承，apply/call方法和对象实例间的继承）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript继承的三种方式">
+<meta property="og:url" content="git@github.com:gitRiven/liujianfeng.git/2017/12/21/JavaScript继承的三种方式/index.html">
+<meta property="og:site_name" content="gitRiven&#39;s Blog">
+<meta property="og:description" content="继承方式还有很多种，本文只提及了（原型链继承，apply/call方法和对象实例间的继承）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T11:09:38.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript继承的三种方式">
+<meta name="twitter:description" content="继承方式还有很多种，本文只提及了（原型链继承，apply/call方法和对象实例间的继承）">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/apple-touch-icon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>JavaScript继承的三种方式 | gitRiven&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">LIUJF</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" href="#" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">LIUJF</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">LIUJF</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="#" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-JavaScript继承的三种方式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/21/JavaScript继承的三种方式/" class="article-date">
+      <time datetime="2017-12-21T11:08:11.000Z" itemprop="datePublished">2017-12-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript继承的三种方式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="JavaScript的特性"><a href="#JavaScript的特性" class="headerlink" title="JavaScript的特性"></a>JavaScript的特性</h1><p>JavaScript是一种动态的，弱类型，基于原型的脚本语言。在JavaScript中”一切皆对象”。</p>
+<h2 id="动态性"><a href="#动态性" class="headerlink" title="动态性"></a>动态性</h2><p>动态性是指,在一个Javascript对象中，要为一个属性赋值，我没不必事先创建一个字段，只需要在使用的时候做赋值操作即可，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个对象</span></span><br><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//动态创建属性name</span></span><br><span class="line">obj.name=<span class="string">"an object"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//动态创建属性sayH1</span></span><br><span class="line">obj.sayHi=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">"hi"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obi.sayHi();</span><br></pre></td></tr></table></figure>
+<h2 id="弱类型"><a href="#弱类型" class="headerlink" title="弱类型"></a>弱类型</h2><p>Javascript是弱类型的，它的数据类型无需在声明时指定，解释器会根据上下文对变量进行实例化，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个变量s,并赋值为字符串</span></span><br><span class="line"><span class="keyword">var</span> s=<span class="string">"text"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//赋值s为整型</span></span><br><span class="line">s=<span class="number">12</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//赋值s为浮点型</span></span><br><span class="line">s=<span class="number">6.3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//赋值s为一个对象</span></span><br><span class="line">s=<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">s.name=<span class="string">"object"</span>;</span><br></pre></td></tr></table></figure>
+<p>弱类的好处是，一个变量可以很大程度的进行复用，比如String类型的name字段，在被使用后，可以赋值为另一个Number型的对象，而无需重新创建一个新的变量。不过，弱类型也有其不利的一面，比如在开发面向对象的Javascript的时候，没有类型的判断将会是比较麻烦的问题，不过我们可以通过别的途径来解决此问题</p>
+<h1 id="Javascript应用范围"><a href="#Javascript应用范围" class="headerlink" title="Javascript应用范围"></a>Javascript应用范围</h1><h2 id="客户端Javascript"><a href="#客户端Javascript" class="headerlink" title="客户端Javascript"></a>客户端Javascript</h2><p>客户端的JavaScript可以使你的WEB页面更加生动，通过AJAX,无刷新的更新页面内容，可以大大的提高用户体验，随着大量的JavaScript包如jQuery，ExtJS,Mootools等的涌现，越来越多的绚丽，高体验的WEB应用被开发出来，这些都离不开幕后的JavaScript的支持。</p>
+<h2 id="服务端Javascript"><a href="#服务端Javascript" class="headerlink" title="服务端Javascript"></a>服务端Javascript</h2><p>当Google的JavaScript引擎V8出现以后，有很多基于V8引擎的应用出现了，其中最著名，最有前景的当算Node.js了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sys=<span class="built_in">require</span>(<span class="string">'sys'</span>);</span><br><span class="line">http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		res.sendHeader(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</span><br><span class="line">		res.sendBody(<span class="string">'Hello World'</span>);</span><br><span class="line">		res.finish();</span><br><span class="line">	&#125;,<span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line">sys.put(<span class="string">'Server runing at http://127.0.0.1:8000/'</span>);</span><br><span class="line"><span class="comment">//保存这个脚本为sayHello.js,然后运行：node sayHello.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//程序将会在控制台上打印：Server runing at http://127.0.0.1:8000/</span></span><br><span class="line">访问http:<span class="comment">//127.0.0.1:8000/，两秒钟之后页面会响应：Hello,World.</span></span><br></pre></td></tr></table></figure>
+<p>再看另一个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tcp= <span class="built_in">require</span>(<span class="string">'tcp'</span>);</span><br><span class="line"><span class="keyword">var</span> server=tcp.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>)</span>&#123;</span><br><span class="line">		socket.setEncoding(<span class="string">"utf8"</span>);</span><br><span class="line">		socket.addListener(<span class="string">"connect"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			socket.send(<span class="string">"hello\r\n"</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">		socket.addListener(<span class="string">"receive"</span>;<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">			socket.send(data);</span><br><span class="line">		&#125;);</span><br><span class="line">		socket.addListener(<span class="string">"eof"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			socket.send(<span class="string">"goodbye\r\n"</span>);</span><br><span class="line">			socket.close();</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">server.listen(<span class="number">7000</span>,<span class="string">"localhost"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//当访问localhost的7000端口，将建立一个TCP连接，编码方式为utf-8,当客户端连接到来时，程序在控制台上打印hello</span></span><br><span class="line"><span class="comment">//当接收到新的数据时，会将接收到的数据原样返回给客户端，如果客户端断开连接，则向控制台打印：goodbye</span></span><br></pre></td></tr></table></figure>
+<p>Node提供了丰富的API来简化服务器端的网络编程，由于Node是基于一个JavaScript引擎的，因此天生的就具有动态性和可扩展性，因此在开发网络程序上，是一个不错的选择。</p>
+<h1 id="JavaScript的三种继承方式"><a href="#JavaScript的三种继承方式" class="headerlink" title="JavaScript的三种继承方式"></a>JavaScript的三种继承方式</h1><h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><p>　在原型链继承方面，JavaScript与java、c#等语言类似，仅允许单父类继承。prototype继承的基本方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent();</span><br></pre></td></tr></table></figure>
+<p>通过对象Child的prototype属性指向父对象Parent的实例，使Child对象实例能通过原型链访问到父对象构造所定义的属性、方法等。 </p>
+<p>构造通过原型链链接了父级对象，是否就意味着完成了对象的继承了呢？答案是否定的。如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent(); </span><br><span class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Child(); </span><br><span class="line">alert(child.constructor);<span class="comment">//function Parent()&#123;&#125; </span></span><br><span class="line">alert(child <span class="keyword">instanceof</span> Child);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>尽管child依然可以作为Child的实例使用，但此时已经丢失了实例child原有的对象构造信息。弥补该缺陷的方法如下： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>)</span>&#123;&#125; </span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent(); </span><br><span class="line">Child.prototype.constructor = Child; </span><br><span class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Child(); </span><br><span class="line">alert(child.constructor);<span class="comment">//function Parent()&#123;&#125; </span></span><br><span class="line">alert(child <span class="keyword">instanceof</span> Child);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>如上代码片段“Child.prototype.constructor = Child”所示，通过显示地指定对象构造Child的原型，强制所有的Child对象实例的构造都为Child。 </p>
+<h2 id="使用apply、call方法"><a href="#使用apply、call方法" class="headerlink" title="使用apply、call方法"></a><strong>使用apply、call方法</strong></h2><p>由于JavaScript内置的Function对象的apply、call方法改变对象构造中“this”的上下文环境，使特定的对象实例具有对象构造中所定义的属性、方法。 使用apply、call继承，在实际开发中操作HTML页面上的DOM对象时尤为常用。如： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">　<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"extend"</span>&gt;</span>apply,call继承<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">　　<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"> </span></span><br><span class="line"><span class="javascript">　　<span class="function"><span class="keyword">function</span> <span class="title">ext</span>(<span class="params"></span>)</span>&#123; </span></span><br><span class="line"><span class="javascript">　　　　 <span class="keyword">this</span>.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="keyword">this</span>.innerHTML)&#125; </span></span><br><span class="line"><span class="undefined">　　&#125; </span></span><br><span class="line"><span class="javascript">　　ext.apply(<span class="built_in">document</span>.getElementById(<span class="string">"extend"</span>)); </span></span><br><span class="line"><span class="javascript">　　ext.call(<span class="built_in">document</span>.getElementById(<span class="string">"extend"</span>)); </span></span><br><span class="line"><span class="undefined">　　</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过apply或call定义的ext方法，使ext方法内部的this上下文表示为DOM对象“<div id="extend">apply,call继承</div>”。 值得注意的是，当使用apply、call时，会直接执行对象构造所定义的代码段，如： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"> </span></span><br><span class="line"><span class="javascript">　　<span class="function"><span class="keyword">function</span> <span class="title">testExec</span>(<span class="params"></span>)</span>&#123; </span></span><br><span class="line"><span class="javascript">　　　　 alert(<span class="string">"执行！"</span>); </span></span><br><span class="line"><span class="undefined">　　&#125; </span></span><br><span class="line"><span class="javascript">　　testExec.call(<span class="literal">null</span>);<span class="comment">//弹出execute对话框 </span></span></span><br><span class="line"><span class="javascript">　　testExec.apply(<span class="literal">null</span>);<span class="comment">//弹出execute对话框 </span></span></span><br><span class="line"><span class="undefined">　　</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="对象实例间的继承"><a href="#对象实例间的继承" class="headerlink" title="对象实例间的继承"></a><strong>对象实例间的继承</strong></h2><p>JavaScript对象的多态性，允许实例动态地添加属性、方法。该特性造就了JavaScript中的另一种继承手法——对象实例间的继承。如： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = &#123;<span class="attr">name</span>:<span class="string">"nathena"</span>,<span class="attr">age</span>:<span class="string">"26"</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> nathena = &#123;<span class="attr">sex</span>:<span class="string">"male"</span>&#125;; </span><br><span class="line">　　(<span class="function"><span class="keyword">function</span> <span class="title">inlineExtends</span>(<span class="params">so,po</span>)</span>&#123; </span><br><span class="line">　　　　<span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> po)&#123; </span><br><span class="line">　　　　　　<span class="keyword">if</span> (so[i])<span class="comment">//如果so也具有这个成员 </span></span><br><span class="line">　　　　　　　　<span class="keyword">continue</span>; </span><br><span class="line">　　　　　　so[i] = po[i]; </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125;)(nathena,Person); </span><br><span class="line">　　alert(nathena.name);<span class="comment">//返回nathana</span></span><br></pre></td></tr></table></figure>
+<p>如以上代码所示，在对象的实例间继承中，父对象Persong定义了“人”所具有的共同属性name、age，子对象nathena定义了自己的私有属性“sex”。函数inlineExtends的功能是，为子对象nathena复制父对象Person中定义的“人”所具有的共同属性。 </p>
+<p>其中特别需要注意的语句是“if(so[i])”，此句确保了子对象原有的成员不被父对象中同名的成员所覆盖，而违背面向对象中父子对象之间继承的原则——子对象可以覆盖、重载父对象的属性或方法，父对象仅能对子对象隐藏自己的属性或方法。 </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/21/JavaScript继承的三种方式/">JavaScript继承的三种方式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">LIUJF</a></p>
+        <p><span>发布时间:</span>2017-12-21, 19:08:11</p>
+        <p><span>最后更新:</span>2017-12-21, 19:09:38</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/21/JavaScript继承的三种方式/" title="JavaScript继承的三种方式">git@github.com:gitRiven/liujianfeng.git/2017/12/21/JavaScript继承的三种方式/</a>
+            <span class="copy-path" data-clipboard-text="原文: git@github.com:gitRiven/liujianfeng.git/2017/12/21/JavaScript继承的三种方式/　　作者: LIUJF" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/21/跨域请求的几种方式/">
+                    跨域请求的几种方式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/21/常用的20个正则表达式/">
+                    常用的20个正则表达式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript的特性"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态性"><span class="toc-number">1.1.</span> <span class="toc-text">动态性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#弱类型"><span class="toc-number">1.2.</span> <span class="toc-text">弱类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript应用范围"><span class="toc-number">2.</span> <span class="toc-text">Javascript应用范围</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端Javascript"><span class="toc-number">2.1.</span> <span class="toc-text">客户端Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端Javascript"><span class="toc-number">2.2.</span> <span class="toc-text">服务端Javascript</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript的三种继承方式"><span class="toc-number">3.</span> <span class="toc-text">JavaScript的三种继承方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原型链继承"><span class="toc-number">3.1.</span> <span class="toc-text">原型链继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用apply、call方法"><span class="toc-number">3.2.</span> <span class="toc-text">使用apply、call方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象实例间的继承"><span class="toc-number">3.3.</span> <span class="toc-text">对象实例间的继承</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JavaScript继承的三种方式　| gitRiven's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/21/跨域请求的几种方式/" title="上一篇: 跨域请求的几种方式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/21/常用的20个正则表达式/" title="下一篇: 常用的20个正则表达式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/字符数组遍历循环/">字符数组遍历循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/事件详解/">事件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/PHP基础/">PHP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/面试题汇总未完善版/">面试题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/web页面访问的流程/">web页面访问的流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue项目相关设置&Webpack打包/">Vue项目相关设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue-Webpack安装/">Vue-Webpack安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/浏览器相关/">浏览器相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/懒加载/">懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/跨域请求的几种方式/">跨域请求的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JavaScript继承的三种方式/">JavaScript继承的三种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/常用的20个正则表达式/">常用的20个正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/原型链的理解/">原型链的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/我的VSCode设置/">我的VSCode设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/MVC&MVP&MVVM/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JQuery/">JQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Javascript/">Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML5/">HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML/">HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/CSS/">CSS</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 LIUJF
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

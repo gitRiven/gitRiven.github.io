@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="LIUJF" />
+
+
+
+<meta name="description" content="我的VSCode基本配置插件，有详细介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的VSCode设置">
+<meta property="og:url" content="git@github.com:gitRiven/liujianfeng.git/2017/12/21/我的VSCode设置/index.html">
+<meta property="og:site_name" content="gitRiven&#39;s Blog">
+<meta property="og:description" content="我的VSCode基本配置插件，有详细介绍">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T11:03:53.592Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的VSCode设置">
+<meta name="twitter:description" content="我的VSCode基本配置插件，有详细介绍">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/apple-touch-icon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>我的VSCode设置 | gitRiven&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">LIUJF</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" href="#" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">LIUJF</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">LIUJF</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="#" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-我的VSCode设置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/21/我的VSCode设置/" class="article-date">
+      <time datetime="2017-12-21T11:02:11.000Z" itemprop="datePublished">2017-12-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我的VSCode设置
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="VSCode安装的插件（常用）"><a href="#VSCode安装的插件（常用）" class="headerlink" title="VSCode安装的插件（常用）"></a>VSCode安装的插件（常用）</h1><h2 id="通用插件"><a href="#通用插件" class="headerlink" title="通用插件"></a>通用插件</h2><ul>
+<li>Auto Close Tag（自动补全标签结尾&lt;/&gt;）</li>
+<li>Auto Rename Tag（自动同步修改标签）</li>
+<li>AutoFileName（引入文件提示）</li>
+<li>background（背景）</li>
+<li>Beautify（代码美化插件）</li>
+<li>Beacket Pair Colorizer（让括号拥有独立的颜色）</li>
+<li>Code Runner（运行选中代码段，支持大量语言，包括Node）</li>
+<li>Dracula Official（黑色主题）</li>
+<li>EaseServer（开启本地服务器）</li>
+<li>hightlight-matching-tag（语法高亮）</li>
+<li>open in browser（在浏览器中打开）</li>
+<li>Simple icon theme（图标主题）</li>
+<li>Terminal（可以在文本中直接使用终端命令）</li>
+</ul>
+<h2 id="HTML插件"><a href="#HTML插件" class="headerlink" title="HTML插件"></a>HTML插件</h2><ul>
+<li>HTML CSS Support（标签样式智能提示）</li>
+<li>HTML Snippets（初级代码片段，自动输入标签：i+tab）</li>
+</ul>
+<h2 id="Javascript插件"><a href="#Javascript插件" class="headerlink" title="Javascript插件"></a>Javascript插件</h2><ul>
+<li>ESLint（语法错误检测）</li>
+<li>JQuery Code Snippets（初级代码片段）</li>
+</ul>
+<h2 id="CSS插件"><a href="#CSS插件" class="headerlink" title="CSS插件"></a>CSS插件</h2><ul>
+<li>Beautify css/sass/scss/less（美化工具）</li>
+<li>Sass（Sass代码补全，高亮，语法检测）</li>
+</ul>
+<h2 id="PHP插件"><a href="#PHP插件" class="headerlink" title="PHP插件"></a>PHP插件</h2><ul>
+<li>PHP Debug（搭建PHP环境）</li>
+<li>PHP Intelephense</li>
+<li>PHP InTelliSense</li>
+</ul>
+<h1 id="Node-js插件"><a href="#Node-js插件" class="headerlink" title="Node.js插件"></a>Node.js插件</h1><ul>
+<li>Node.js docs（可以打开Node.js文档）</li>
+</ul>
+<h2 id="Vue-js插件"><a href="#Vue-js插件" class="headerlink" title="Vue.js插件"></a>Vue.js插件</h2><ul>
+<li>Vetur（Vue代码补全，高亮，语法检测）</li>
+<li>Vue 2 Snippets（Vue2代码补全，高亮，语法检测）</li>
+</ul>
+<h1 id="其他（官网地址）"><a href="#其他（官网地址）" class="headerlink" title="其他（官网地址）"></a>其他（官网地址）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">官网地址：</span><br><span class="line">	https://marketplace.visualstudio.com/vscode</span><br><span class="line">	http://code.visualstudio.com/docs</span><br></pre></td></tr></table></figure>
+<h1 id="默认代码段路径"><a href="#默认代码段路径" class="headerlink" title="默认代码段路径"></a>默认代码段路径</h1><ul>
+<li>C:\Users\i am your father\AppData\Roaming\Code\User\snippets</li>
+</ul>
+<h1 id="我的代码段"><a href="#我的代码段" class="headerlink" title="我的代码段"></a>我的代码段</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  //方便使用php交接数据</span><br><span class="line">"Print php": &#123;</span><br><span class="line">	"prefix": "p?",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"&lt;?php?&gt;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "&lt;?php?&gt;"</span><br><span class="line">&#125;,</span><br><span class="line">  //控制文本内容长度</span><br><span class="line">"Print aline": &#123;</span><br><span class="line">	"prefix": "aline",</span><br><span class="line">	"body": [</span><br><span class="line">		 "white-space: nowrap;",</span><br><span class="line">		//   控制文本强制一行显示</span><br><span class="line">		"text-overflow: ellipsis;",</span><br><span class="line">		//  超出部分省略显示省略号</span><br><span class="line">		<span class="string">"overflow: hidden;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "&lt;aline&gt;"</span><br><span class="line">&#125;,</span><br><span class="line">  //ajax使用的template模板创建</span><br><span class="line">"Print to template": &#123;</span><br><span class="line">	"prefix": "tp",</span><br><span class="line">	"body": [</span><br><span class="line">		"&lt;script type='text/html' id=''&gt;",</span><br><span class="line">		"&#123;&#123;each rows v i&#125;&#125;",//&#123;&#123;each result as v i&#125;&#125;</span><br><span class="line">		"&#123;&#123;/each&#125;&#125;",</span><br><span class="line">		<span class="string">"&lt;/script&gt;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  //快速生成function</span><br><span class="line">"my_function":&#123;</span><br><span class="line">	"prefix": "fn",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"function($1)&#123;$2&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "快速生成function"</span><br><span class="line">&#125;,</span><br><span class="line">  //快速生成console.log()</span><br><span class="line">"my_console":&#123;</span><br><span class="line">	"prefix": ".log",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"console.log('$1')"</span></span><br><span class="line">	],</span><br><span class="line">	"description": ""</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">// ajax模板搭建</span><br><span class="line">"Print to $.ajax": &#123;</span><br><span class="line">	"prefix": "my_ajax",</span><br><span class="line">	"body": [</span><br><span class="line">		"$.ajax(&#123;",</span><br><span class="line">		"\ttype:'',",</span><br><span class="line">		"\turl:'',",</span><br><span class="line">		"\tdata:&#123;",</span><br><span class="line">		"\t&#125;,",</span><br><span class="line">		"\tsuccess:function(data)&#123;",</span><br><span class="line">		"\t\tconsole.log(data);",</span><br><span class="line">		"\t\t&#125;",</span><br><span class="line">		<span class="string">"&#125;)"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">// 获取视频进度</span><br><span class="line">"Print to video": &#123;</span><br><span class="line">	"prefix": "my_video",</span><br><span class="line">	"body": [</span><br><span class="line">		"//进度查询",</span><br><span class="line">		"video.ontimeupdate = function()&#123;",</span><br><span class="line">			"var percent = video.currentTime/video.duration*100+'%';",</span><br><span class="line">			"console.log(percent);",</span><br><span class="line">			"move.style.width = percent;",</span><br><span class="line">		<span class="string">"&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">// 获取图片路径</span><br><span class="line">"Print to get_file": &#123;</span><br><span class="line">	"prefix": "get_file",</span><br><span class="line">	"body": [</span><br><span class="line">		"//获取图片路径",</span><br><span class="line">		"var file = document.querySelector('#file')",</span><br><span class="line">		</span><br><span class="line">		"file.onchange = function()&#123;",</span><br><span class="line">			"file = file.files[0];",</span><br><span class="line">			"var reader = new FileReader();",</span><br><span class="line">			"reader.readAsDataURL(file);",</span><br><span class="line">			"reader.onload = function()&#123;",</span><br><span class="line">				"document.querySelector('img').setAttribute('src',reader.result);",</span><br><span class="line">			"&#125;",</span><br><span class="line">		<span class="string">"&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">// canvas画图</span><br><span class="line">"Print to canvas": &#123;</span><br><span class="line">	"prefix": "my_canvas",</span><br><span class="line">	"body": [</span><br><span class="line">		"var canvas = document.querySelect('#canvas')",</span><br><span class="line">		"var ctx = canvas.getContext('2d')",</span><br><span class="line">		"ctx.moveTo(x,y)",</span><br><span class="line">		"ctx.lineTo(x,y)",</span><br><span class="line">		"ctx.stroke()",</span><br><span class="line">		"//创建新画布",</span><br><span class="line">		"ctx.beginPath",</span><br><span class="line">		"ctx.moveTo(x,y)",</span><br><span class="line">		"ctx.lineTo(x,y)",</span><br><span class="line">		"//形状填充,必须用lineTo闭合",</span><br><span class="line">		"",</span><br><span class="line">		"//其他属性",</span><br><span class="line">		"//ctx.isPiontInPath(xxx)在里面",</span><br><span class="line">		"//ctx.clearRect(0,0,canvas.weight,canvas.height)清除画布",</span><br><span class="line">		"//ctx.rect(x,y,width,height)方形",</span><br><span class="line">		"//ctx.fillRect()",</span><br><span class="line">		"//ctx.strokeRect()",</span><br><span class="line">		"//ctx.arc(x,y,半径,起始弧度,结束弧度,false顺时针/true逆时针)[弧度=角度/180 *Math.PI]",</span><br><span class="line">		"//ctx.fill()",</span><br><span class="line">		"//填充颜色ctx.fillStyle()",</span><br><span class="line">		"//描边颜色ctx.strokeStyle()",</span><br><span class="line">		<span class="string">"//直接闭合ctx.closePath()"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">// canvas阴影</span><br><span class="line">"Print to canvas_shadow": &#123;</span><br><span class="line">	"prefix": "canvas_shadow",</span><br><span class="line">	"body": [</span><br><span class="line">		"shadowOffsetX = 10;",</span><br><span class="line">		"shadowOffsetY = 10",</span><br><span class="line">		"shadowBlur = 10",</span><br><span class="line">		<span class="string">"shadowColor = 'red'"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">//canvas梯度变色</span><br><span class="line">"Print to canvas_gradient": &#123;</span><br><span class="line">	"prefix": "canvas_gradient",</span><br><span class="line">	"body": [</span><br><span class="line">		"//lineWidth = 5",</span><br><span class="line">		"//lineCap = 'round'",</span><br><span class="line">		"var gradient = cxt.createLinearGradient(x0,y0,x1,y1)",</span><br><span class="line">		"gradient.addColorStop(0-1,'red')",</span><br><span class="line">		"//var gradient = cxt.createLinearGradient(c1.x,c1.y,c1,r,c2.x,c2.y,c2,r)",</span><br><span class="line">		<span class="string">"cxt.fillStyle = gradient"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">//canvas加载图片</span><br><span class="line">"Print to canvas_img": &#123;</span><br><span class="line">	"prefix": "canvas_img",</span><br><span class="line">	"body": [</span><br><span class="line">		"var image = new Image();",</span><br><span class="line">		"image.src = './img/xxx.jpg'",</span><br><span class="line">		"image.onload = function()&#123;",</span><br><span class="line">		"cxt.drawImage(image,0,0,150,100)",</span><br><span class="line">		"//从图片中x,y这个点,截取40*40的局部小图,显示在画布,300,200,80,80这个区域,形成放大效果(120,120)是原图中的尺寸",</span><br><span class="line">		"//cxt.drawImage(image,x,y,40,40,300,200,120,120)",</span><br><span class="line">		<span class="string">"&#125;"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">//canvas文字对齐方式</span><br><span class="line">"Print to canvas_font": &#123;</span><br><span class="line">	"prefix": "canvas_font",</span><br><span class="line">	"body": [</span><br><span class="line">		"strokeText('text',x,y)",</span><br><span class="line">		"fillText('text',x,y)",</span><br><span class="line">		"cxt.font = '20px 微软雅黑'",</span><br><span class="line">		"cxt.textAlign = 'left'//水平对齐方式",</span><br><span class="line">		<span class="string">"cxt.textBaseline = 'top'//bottom,middle垂直对齐方式"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">//Node js 返回渲染好的网页</span><br><span class="line">"Print to Node_js_html": &#123;</span><br><span class="line">	"prefix": "nodejs_html",</span><br><span class="line">	"body": [</span><br><span class="line">		"function addRenderFunction(res)&#123;",</span><br><span class="line">		" res.render = function(tplname,jsonname)&#123;",</span><br><span class="line">		"var tplFileName = './views/' + tplname + '.html';",</span><br><span class="line">		"var jsonFileName = './' + jsonname + '.json';",</span><br><span class="line">		"fs.readFile(tplFileName,'utf-8',function(err,jsondata)&#123;",</span><br><span class="line">			"if(err)&#123;",</span><br><span class="line">				"return res.end(tpldata);",</span><br><span class="line">				"&#125;",</span><br><span class="line">				"var jsonObjc = JSON.parse(jsondata);",</span><br><span class="line">				"var htmlStr = template.compile(tpldata)(jsonObjc)",</span><br><span class="line">				"return res.end(htmlStr)",</span><br><span class="line">				"&#125;)",</span><br><span class="line">				" &#125;",</span><br><span class="line">				<span class="string">"&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line">//Vue 返回template模板</span><br><span class="line">"Print to Vue-template": &#123;</span><br><span class="line">	"prefix": "Vue_template",</span><br><span class="line">	"body": [</span><br><span class="line">		"&lt;script type='text/html' id='templateId'&gt;",</span><br><span class="line">		"&lt;div&gt;&lt;/div&gt;",</span><br><span class="line">		"&lt;/script&gt;",</span><br><span class="line">		"&lt;script&gt;",</span><br><span class="line">		" Vue.component('login', &#123;",</span><br><span class="line">			"template: '#templateId',",</span><br><span class="line">			"data: function () &#123;",</span><br><span class="line">				"return &#123;",</span><br><span class="line">					"",</span><br><span class="line">					"&#125;",</span><br><span class="line">				"&#125;",</span><br><span class="line">				<span class="string">"&#125;)"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line">//Vue post请求</span><br><span class="line">"Print to Vue-post": &#123;</span><br><span class="line">	"prefix": "Vue_post",</span><br><span class="line">	"body": [</span><br><span class="line">		"const url=''",</span><br><span class="line">		"this.$http.post(url,&#123;username:'lis'&#125;,&#123;emulateJSON:true&#125;).then(function()&#123;",</span><br><span class="line">			"",</span><br><span class="line">			<span class="string">"&#125;)"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;,</span><br><span class="line">//Vue Moment</span><br><span class="line">"Print to Vue-moment": &#123;</span><br><span class="line">	"prefix": "Vue_moment",</span><br><span class="line">	"body": [</span><br><span class="line">		"Vue.filter('fmtDate',(input,formatString)=&gt;&#123;",</span><br><span class="line">		"const lastFormatString = formatString || 'YYYY-MM-DD HH:mm:ss'",</span><br><span class="line">			"//moment里面接的参数，要过滤的原始时间，比如2015-04-16T03:50:28.000Z",</span><br><span class="line">			"//format里面接的参数，要格式化成的字符串",</span><br><span class="line">			" return moment(input).format(lastFormatString)",</span><br><span class="line">			<span class="string">"&#125;)"</span></span><br><span class="line"></span><br><span class="line">	],</span><br><span class="line">	"description": "Log output to console"</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  //for 循环</span><br><span class="line">  "Print for": &#123;</span><br><span class="line">	"prefix": "itar",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"for($i=0;$i&lt;count($);$i++)&#123;&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "for循环遍历"</span><br><span class="line">&#125;,</span><br><span class="line">  //创建&lt;?php?&gt;</span><br><span class="line">"Print php": &#123;</span><br><span class="line">	"prefix": "p?",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"&lt;?php?&gt;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "&lt;?php?&gt;"</span><br><span class="line">&#125;,</span><br><span class="line">  //输出</span><br><span class="line">"Print echo": &#123;</span><br><span class="line">	"prefix": "ec",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"echo ;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "echo"</span><br><span class="line">&#125;,</span><br><span class="line">  //xml解析头</span><br><span class="line">"Print headerxml": &#123;</span><br><span class="line">	"prefix": "myheaderxml",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"header('content-type:text/xml;charset=utf-8');"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "header('content-type:text/xml;charset=utf-8')"</span><br><span class="line">&#125;,</span><br><span class="line">  //html解析头</span><br><span class="line">"Print to header": &#123;</span><br><span class="line">	"prefix": "myheaderhtml",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"header('content-type:text/html;charset=utf-8')"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "utf-8兼容"</span><br><span class="line">&#125;,</span><br><span class="line">  //JSON解析头</span><br><span class="line">"Print to headerjson": &#123;</span><br><span class="line">	"prefix": "myheaderjson",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">"header('content-type:application/json;charset=utf-8');"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "header('content-type:application/json;charset=utf-8')"</span><br><span class="line">&#125;,</span><br><span class="line">  //POST请求时设置的请求头</span><br><span class="line">"Print to setheader": &#123;</span><br><span class="line">	"prefix": "setheader",</span><br><span class="line">	"body": [</span><br><span class="line">		<span class="string">".setRequestHeader('Content-type', 'application/x-www-form-urlencoded');"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "post-header"</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  //控制文本的显示</span><br><span class="line">  "Print aline": &#123;</span><br><span class="line">	"prefix": "aline",</span><br><span class="line">	"body": [</span><br><span class="line">		 "white-space: nowrap;",</span><br><span class="line">		"/*控制文本强制一行显示*/",</span><br><span class="line">		"text-overflow: ellipsis;",</span><br><span class="line">		"/*超出部分省略显示省略号*/",</span><br><span class="line">		"overflow: hidden;",</span><br><span class="line">		<span class="string">"/*溢出隐藏*/"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "&lt;aline&gt;"</span><br><span class="line">&#125;,</span><br><span class="line">  //全局属性</span><br><span class="line">"Print *": &#123;</span><br><span class="line">	"prefix": "*",</span><br><span class="line">	"body": [</span><br><span class="line">		 "*&#123;",</span><br><span class="line">		"margin:0;",</span><br><span class="line">		"padding:0;",</span><br><span class="line">		"list-style:none;",</span><br><span class="line">		<span class="string">"&#125;"</span></span><br><span class="line">	],</span><br><span class="line">	"description": "&lt;aline&gt;"</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	/*</span><br><span class="line">		// Place your snippets for Vue here. Each snippet is defined under a snippet name and has a prefix, body and </span><br><span class="line">		// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span><br><span class="line">		// $1, $2 for tab stops, $0 for the final cursor position, and $&#123;1:label&#125;, $&#123;2:another&#125; for placeholders. Placeholders with the </span><br><span class="line">		// same ids are connected.</span><br><span class="line">		// Example:</span><br><span class="line">		"Print to console": &#123;</span><br><span class="line">			"prefix": "log",</span><br><span class="line">			"body": [</span><br><span class="line">				"console.log('$1');",</span><br><span class="line">				<span class="string">"$2"</span></span><br><span class="line">			],</span><br><span class="line">			"description": "Log output to console"</span><br><span class="line">		&#125;</span><br><span class="line">	*/</span><br><span class="line">		"my_vue": &#123;</span><br><span class="line">			"prefix": "my_vue",</span><br><span class="line">			"body": [</span><br><span class="line">				"&lt;template&gt;",</span><br><span class="line">				"   &lt;div&gt;",</span><br><span class="line">				"       $0",</span><br><span class="line">				"   &lt;/div&gt;",</span><br><span class="line">				"&lt;/template&gt;",</span><br><span class="line">				"   ",</span><br><span class="line">				"&lt;style scoped&gt;",</span><br><span class="line">				"   ",</span><br><span class="line">				"&lt;/style&gt;",</span><br><span class="line">				"   ",</span><br><span class="line">				"&lt;script&gt;",</span><br><span class="line">				"   import common from '../../common/common.js'",</span><br><span class="line">				"   ",</span><br><span class="line">				"   export default &#123;",</span><br><span class="line">				"       data() &#123;",</span><br><span class="line">				"           return &#123;",</span><br><span class="line">				"           &#125;",</span><br><span class="line">				"       &#125;,",</span><br><span class="line">				"       created() &#123;",</span><br><span class="line">				"           ",</span><br><span class="line">				"       &#125;,",</span><br><span class="line">				"       methods: &#123;",</span><br><span class="line">				"           ",</span><br><span class="line">				"       &#125;",</span><br><span class="line">				"   &#125;",</span><br><span class="line">				<span class="string">"&lt;/script&gt;"</span></span><br><span class="line">			],</span><br><span class="line">			"description": "快速创建vue模板"</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/21/我的VSCode设置/">我的VSCode设置</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">LIUJF</a></p>
+        <p><span>发布时间:</span>2017-12-21, 19:02:11</p>
+        <p><span>最后更新:</span>2017-12-21, 19:03:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/21/我的VSCode设置/" title="我的VSCode设置">git@github.com:gitRiven/liujianfeng.git/2017/12/21/我的VSCode设置/</a>
+            <span class="copy-path" data-clipboard-text="原文: git@github.com:gitRiven/liujianfeng.git/2017/12/21/我的VSCode设置/　　作者: LIUJF" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/21/原型链的理解/">
+                    原型链的理解
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/21/MVC&MVP&MVVM/">
+                    MVC
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VSCode安装的插件（常用）"><span class="toc-number">1.</span> <span class="toc-text">VSCode安装的插件（常用）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通用插件"><span class="toc-number">1.1.</span> <span class="toc-text">通用插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML插件"><span class="toc-number">1.2.</span> <span class="toc-text">HTML插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript插件"><span class="toc-number">1.3.</span> <span class="toc-text">Javascript插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS插件"><span class="toc-number">1.4.</span> <span class="toc-text">CSS插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP插件"><span class="toc-number">1.5.</span> <span class="toc-text">PHP插件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js插件"><span class="toc-number">2.</span> <span class="toc-text">Node.js插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-js插件"><span class="toc-number">2.1.</span> <span class="toc-text">Vue.js插件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他（官网地址）"><span class="toc-number">3.</span> <span class="toc-text">其他（官网地址）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认代码段路径"><span class="toc-number">4.</span> <span class="toc-text">默认代码段路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#我的代码段"><span class="toc-number">5.</span> <span class="toc-text">我的代码段</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">5.1.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Javascript"><span class="toc-number">5.2.</span> <span class="toc-text">Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP"><span class="toc-number">5.3.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">5.4.</span> <span class="toc-text">CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue"><span class="toc-number">5.5.</span> <span class="toc-text">Vue</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"我的VSCode设置　| gitRiven's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/21/原型链的理解/" title="上一篇: 原型链的理解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/21/MVC&MVP&MVVM/" title="下一篇: MVC">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/字符数组遍历循环/">字符数组遍历循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/事件详解/">事件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/PHP基础/">PHP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/面试题汇总未完善版/">面试题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/web页面访问的流程/">web页面访问的流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue项目相关设置&Webpack打包/">Vue项目相关设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue-Webpack安装/">Vue-Webpack安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/浏览器相关/">浏览器相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/懒加载/">懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/跨域请求的几种方式/">跨域请求的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JavaScript继承的三种方式/">JavaScript继承的三种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/常用的20个正则表达式/">常用的20个正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/原型链的理解/">原型链的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/我的VSCode设置/">我的VSCode设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/MVC&MVP&MVVM/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JQuery/">JQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Javascript/">Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML5/">HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML/">HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/CSS/">CSS</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 LIUJF
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

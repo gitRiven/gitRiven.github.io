@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="LIUJF" />
+
+
+
+<meta name="description" content="Vue项目中常使用的方法，插件的使用，最后附上Webpack打包方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目相关设置">
+<meta property="og:url" content="git@github.com:gitRiven/liujianfeng.git/2017/12/21/Vue项目相关设置&Webpack打包/index.html">
+<meta property="og:site_name" content="gitRiven&#39;s Blog">
+<meta property="og:description" content="Vue项目中常使用的方法，插件的使用，最后附上Webpack打包方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-21T11:17:12.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue项目相关设置">
+<meta name="twitter:description" content="Vue项目中常使用的方法，插件的使用，最后附上Webpack打包方法">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/apple-touch-icon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Vue项目相关设置 | gitRiven&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">LIUJF</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" href="#" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">LIUJF</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">LIUJF</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/gitRiven" title="GitHub"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="#" title="CSDN"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="#" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Vue项目相关设置&amp;Webpack打包" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/21/Vue项目相关设置&Webpack打包/" class="article-date">
+      <time datetime="2017-12-21T11:16:06.000Z" itemprop="datePublished">2017-12-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue项目相关设置
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Vue项目开启"><a href="#Vue项目开启" class="headerlink" title="Vue项目开启"></a>Vue项目开启</h1><h2 id="下载基础包"><a href="#下载基础包" class="headerlink" title="下载基础包"></a>下载基础包</h2><ul>
+<li>配置好Vue+webpack环境</li>
+<li>从我的github里面，下载Vue搭建，解压至工作目录中<ul>
+<li>文件已经配置好main.js里面的基本路由环境</li>
+<li>文件App.vue里面的内容可以进行删改，但是需要留下：<template> <div>这里搭建你想要的页面 </div> </template></li>
+<li>文件webpack.config.dev.js已经配置好一些依赖包，只需要在文件夹中shift+右键，打开命令符，输入npm install即可配置好依赖项，dev里面可以设置打开的端口，初始6008端口</li>
+<li>遇到module报错的时候，一般是依赖包下载不全，网速好了删掉node_modules文件夹，重新执行上面的下载操作</li>
+<li>如果需要其他文件包请自行去网站上查阅</li>
+</ul>
+</li>
+<li>本文中有项目中安装的包集合及说明</li>
+</ul>
+<h1 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h1><h2 id="文件创建"><a href="#文件创建" class="headerlink" title="文件创建"></a>文件创建</h2><ul>
+<li><p>在src项目里面创建components（文件夹）在这里面创建自己的目录</p>
+</li>
+<li><p>在components中创建home（文件夹），并且创建home.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div&gt;</span><br><span class="line">	&lt;!-- 这个项目中需要的是轮播图 Mint-ui中的swiper我进行了额外的封装 --&gt;</span><br><span class="line">	</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在App.vue中搭建基础布局（在页面切换时始终存在的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- 头部Mint-ui中的 Header --&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;router-view&gt;</span><br><span class="line">     &lt;!-- 可视区 --&gt;</span><br><span class="line">    &lt;/router-view&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 尾部Mint-ui中的Tabbar --&gt;</span><br><span class="line">  &lt;/div&gt; </span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="监控页面变化-route"><a href="#监控页面变化-route" class="headerlink" title="监控页面变化($route)"></a>监控页面变化($route)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">	export default&#123;</span><br><span class="line">      data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">          isbackShow:false,</span><br><span class="line">          isShowTabBar: true</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      methods:&#123;</span><br><span class="line">      ///xxxxx方法</span><br><span class="line">        getroutepath(path)&#123;</span><br><span class="line">                if(path !=&apos;/home&apos;)&#123;</span><br><span class="line">                    this.isbackShow= true</span><br><span class="line">                    this.isShowTabBar= false</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    this.isbackShow= false</span><br><span class="line">                    this.isShowTabBar= true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      //属性名称代表要监控的对象</span><br><span class="line">      watch:&#123;</span><br><span class="line">       // $route只有在路由发生变化的时候才会触发事件</span><br><span class="line">        </span><br><span class="line">        $route(newValue,oldValue)&#123;</span><br><span class="line">          this.getroutepath(newValue.path)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="轮播图子组件-Mint-ui-父子组件props"><a href="#轮播图子组件-Mint-ui-父子组件props" class="headerlink" title="轮播图子组件(Mint-ui 父子组件props)"></a>轮播图子组件(Mint-ui 父子组件props)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;mt-swipe :auto=&quot;4000&quot;&gt;</span><br><span class="line">            &lt;mt-swipe-item v-for=&quot;(item,index) in lunboPic&quot; :key=&quot;index&quot;&gt;</span><br><span class="line">                &lt;img :src=&quot;item.img&quot; alt=&quot;&quot;&gt;</span><br><span class="line">            &lt;/mt-swipe-item&gt;</span><br><span class="line">       </span><br><span class="line">    &lt;/mt-swipe&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">    .mint-swipe&#123;</span><br><span class="line">        height: 250px;</span><br><span class="line">        width: 100%;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    img&#123;</span><br><span class="line">        width: 100%;</span><br><span class="line">        height: 100%;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    //导入common组件</span><br><span class="line">    import common from &apos;../../common/common.js&apos;</span><br><span class="line"></span><br><span class="line">    export default&#123;</span><br><span class="line">        // 父子传件</span><br><span class="line">        props:[&apos;lunbo_url&apos;,&apos;lunbo_time&apos;],  //父组件需要传值 &lt;div lunbo_url=&quot;字符串&quot; :lunbo_time=&quot;数字&quot;&gt;&lt;/div&gt;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return&#123;</span><br><span class="line">                lunboPic:[]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        created()&#123;</span><br><span class="line">            this.getlunboPic()</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            getlunboPic()&#123;</span><br><span class="line">                // 获取轮播图数据</span><br><span class="line">                const url = `$&#123;common.alphost&#125;$&#123;this.lunbo_url&#125;`</span><br><span class="line">                this.$http.get(url).then(response=&gt;&#123;</span><br><span class="line">                    // 遍历response里面的元素，统一图片路径的键</span><br><span class="line">                    response.body.message.forEach(item =&gt; &#123;</span><br><span class="line">                        if(item.src)&#123;</span><br><span class="line">                            item.img = item.src</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                    this.lunboPic = response.body.message                   </span><br><span class="line">                &#125;)             </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="文章页面"><a href="#文章页面" class="headerlink" title="文章页面"></a>文章页面</h1><h2 id="全局时间过滤器-moment-filter"><a href="#全局时间过滤器-moment-filter" class="headerlink" title="全局时间过滤器(moment,filter)"></a>全局时间过滤器(moment,filter)</h2><ul>
+<li><p>首先需要下载moment.js的包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导入moment.js</span></span><br><span class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//全局时间过滤器</span></span><br><span class="line">Vue.filter(<span class="string">'fmtData'</span>,(input,formatString)=&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> lastFormatString = formatString || <span class="string">"YYYY-MM-DD HH:mm:ss"</span></span><br><span class="line">    <span class="keyword">return</span> moment(input).format(lastFormatString)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="返回上一个页面"><a href="#返回上一个页面" class="headerlink" title="返回上一个页面"></a>返回上一个页面</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$router.go(<span class="number">-1</span>) <span class="comment">//需要路由模块</span></span><br></pre></td></tr></table></figure>
+<h2 id="文字换行"><a href="#文字换行" class="headerlink" title="文字换行"></a>文字换行</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">word-wrap</span>:break-word;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获取页面的参数"><a href="#获取页面的参数" class="headerlink" title="获取页面的参数"></a>获取页面的参数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$route)  <span class="comment">//需要配置路由</span></span><br></pre></td></tr></table></figure>
+<h2 id="图文列表（UI）"><a href="#图文列表（UI）" class="headerlink" title="图文列表（UI）"></a>图文列表（UI）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;mui-table-view&quot;&gt;</span><br><span class="line">	&lt;li class=&quot;mui-table-view-cell mui-media&quot;&gt;</span><br><span class="line">		&lt;a href=&quot;javascript:;&quot; class=&quot;&quot;&gt;</span><br><span class="line">			&lt;img class=&quot;mui-media-object mui-pull-left&quot; src=&quot;../images/shuijiao.jpg&quot;&gt;</span><br><span class="line">			&lt;div class=&quot;mui-media-body&quot;&gt;</span><br><span class="line">					幸福</span><br><span class="line">				&lt;p class=&quot;mui-ellipsis&quot;&gt;能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？&lt;/p&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/a&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="评论子组件-Mint-ui-UI"><a href="#评论子组件-Mint-ui-UI" class="headerlink" title="评论子组件(Mint-ui,UI)"></a>评论子组件(Mint-ui,UI)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--文本框UI--&gt;</span><br><span class="line">&lt;textarea id=&quot;textarea&quot; rows=&quot;5&quot; placeholder=&quot;多行文本框&quot;&gt;&lt;/textarea&gt;   </span><br><span class="line"></span><br><span class="line">&lt;!--按钮Mimt-ui--&gt;</span><br><span class="line">&lt;mt-button type=&quot;primary&quot;&gt;primary&lt;/mt-button&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="按钮模块子组件-emit"><a href="#按钮模块子组件-emit" class="headerlink" title="按钮模块子组件($emit)"></a>按钮模块子组件($emit)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    export default&#123;</span><br><span class="line">        data()&#123;</span><br><span class="line">            return&#123;</span><br><span class="line">                num:1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        props:[&apos;stock_quantity&apos;],</span><br><span class="line">        created()&#123;  </span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            minus()&#123;</span><br><span class="line">                if(this.num&lt;=1)&#123;</span><br><span class="line">                   return</span><br><span class="line">               &#125;</span><br><span class="line">               this.num--</span><br><span class="line">               this.notify()</span><br><span class="line">            &#125;,</span><br><span class="line">            add()&#123;</span><br><span class="line">                 if(this.num&gt;=this.stock_quantity)&#123;</span><br><span class="line">                   return</span><br><span class="line">               &#125;</span><br><span class="line">               this.num++</span><br><span class="line">               this.notify()</span><br><span class="line">            &#125;,</span><br><span class="line">            notify()&#123;</span><br><span class="line">                this.$emit(&apos;countnum&apos;,this.num)                        //在这里</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Vue高级使用"><a href="#Vue高级使用" class="headerlink" title="Vue高级使用"></a>Vue高级使用</h1><h2 id="获取文档中的内容-refs"><a href="#获取文档中的内容-refs" class="headerlink" title="获取文档中的内容($refs)"></a>获取文档中的内容($refs)</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">"tt"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span></span><br><span class="line"><span class="undefined">  data()&#123;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  created()&#123;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods:&#123;</span></span><br><span class="line"><span class="undefined">    	gettext()&#123;</span></span><br><span class="line"><span class="javascript">          	<span class="keyword">const</span> value = <span class="keyword">this</span>.$refs.tt.value</span></span><br><span class="line"><span class="undefined">    	&#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义组件传值"><a href="#自定义组件传值" class="headerlink" title="自定义组件传值"></a>自定义组件传值</h2><h3 id="emit-v-on"><a href="#emit-v-on" class="headerlink" title="$emit/v-on"></a>$emit/v-on</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--父组件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:countnum</span>=<span class="string">"getnum"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">	getnum(num)&#123;</span></span><br><span class="line"><span class="javascript">       <span class="keyword">this</span>.num = num   <span class="comment">//赋值给全局</span></span></span><br><span class="line"><span class="undefined">	&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--子组件--&gt;</span></span><br><span class="line">notify()&#123;</span><br><span class="line">      this.$emit('countnum',this.num)</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="跳转页面-router-push"><a href="#跳转页面-router-push" class="headerlink" title="跳转页面($router.push)"></a>跳转页面($router.push)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要在main.js里面先引入文件路径</span></span><br><span class="line"><span class="number">1.</span><span class="comment">//样式(域名地址)#/goods/pictureAndText/:goodsId</span></span><br><span class="line"><span class="keyword">this</span>.router.push(&#123; <span class="attr">path</span>: <span class="string">`/goods/pictureAndText/<span class="subst">$&#123;<span class="keyword">this</span>.$route.params.goodsId&#125;</span>`</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span><span class="comment">//样式(域名地址))#/goods/goodscommont?goodsId=goodsId</span></span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123;<span class="attr">path</span>:<span class="string">'/goods/goodscommont'</span>,<span class="attr">query</span>:&#123; <span class="attr">goodsId</span>:<span class="keyword">this</span>.$route.params.goodsId&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Vue仓库的使用"><a href="#Vue仓库的使用" class="headerlink" title="Vue仓库的使用"></a>Vue仓库的使用</h2><h3 id="main-js基本设置"><a href="#main-js基本设置" class="headerlink" title="main.js基本设置"></a>main.js基本设置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导包</span></span><br><span class="line"><span class="keyword">import</span> vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line">Vue.use(vuex)</span><br><span class="line"><span class="keyword">const</span> moduleA = &#123;</span><br><span class="line">    state: &#123;</span><br><span class="line">        goodsList:[]<span class="comment">//创建一个存储用户数据的数组</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;&#125;,<span class="comment">//接收并存储数据</span></span><br><span class="line">    actions: &#123;&#125;,<span class="comment">//异步接收数据</span></span><br><span class="line">    getters: &#123;&#125;<span class="comment">//外部如果想获取数据则调用里面的方法，（return）</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    modules: &#123;</span><br><span class="line">      a: moduleA</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">new</span> Vue =(&#123;</span><br><span class="line">  el:<span class="string">'#app'</span>,</span><br><span class="line">  store,</span><br><span class="line">  render:<span class="function"><span class="params">h</span>=&gt;</span>h(APP)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="页面发送数据，仓库接收-commit-getters"><a href="#页面发送数据，仓库接收-commit-getters" class="headerlink" title="页面发送数据，仓库接收(commit,getters)"></a>页面发送数据，仓库接收(commit,getters)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//页面中发送数据，同步异步选取一种</span></span><br><span class="line"><span class="comment">//定义goods</span></span><br><span class="line"> <span class="keyword">const</span> goods = &#123;<span class="attr">goodsId</span>:<span class="keyword">this</span>.$route.params.goodsId,<span class="attr">count</span>:<span class="keyword">this</span>.count&#125;</span><br><span class="line"><span class="comment">//同步的往仓库中去存储数据</span></span><br><span class="line">  <span class="keyword">this</span>.$store.commit(<span class="string">'addGoods'</span>,goods)</span><br><span class="line"><span class="comment">//异步的往仓库中去存储数据</span></span><br><span class="line">  <span class="keyword">this</span>.$store.dispatch(<span class="string">'addGoodsAsync'</span>,goods)</span><br><span class="line"> </span><br><span class="line">  <span class="comment">//同步</span></span><br><span class="line">  mutations: &#123;  </span><br><span class="line">        <span class="comment">//仓库中接收数据并储存到state中的goodsList中 </span></span><br><span class="line">        addGoods(state,goods)&#123;</span><br><span class="line">          <span class="keyword">this</span>.state.goodsList.push(goods)</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//异步 </span></span><br><span class="line"> action:&#123;</span><br><span class="line">    addGoodsAsync(context,goods)&#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">                context.commit(<span class="string">'addGoods'</span>,goods)</span><br><span class="line">            &#125;,<span class="number">2000</span>)</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="页面从仓库中获取数据-getters"><a href="#页面从仓库中获取数据-getters" class="headerlink" title="页面从仓库中获取数据(getters)"></a>页面从仓库中获取数据(getters)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js设置</span></span><br><span class="line"> getters: &#123;</span><br><span class="line">   getgoodsCount(state)&#123;</span><br><span class="line">     <span class="keyword">let</span> goodsCount = <span class="number">0</span></span><br><span class="line">     <span class="keyword">this</span>.state.goodsList.forEach(<span class="function"><span class="params">goods</span>=&gt;</span>&#123;</span><br><span class="line">       goodsCount += goods.count</span><br><span class="line">       <span class="keyword">return</span> goodsCount</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//想要获取数据的页面</span></span><br><span class="line"><span class="keyword">const</span> goodsCount = <span class="keyword">this</span>.$store.getters.getgoodsCount</span><br></pre></td></tr></table></figure>
+<h2 id="Vue的生命周期"><a href="#Vue的生命周期" class="headerlink" title="Vue的生命周期"></a>Vue的生命周期</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"------newsinfo created-----"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   beforeCreate()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---beforeCreate"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   beforeMount()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---beforeMount"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   mounted()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---mounted"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   beforeUpdate()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---beforeUpdate"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   updated()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---update"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   beforeDestroy()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---beforeDestroy"</span>)</span><br><span class="line">   &#125;,</span><br><span class="line">   destroyed()&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"---newsinfo---destroyed"</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="项目中安装的包"><a href="#项目中安装的包" class="headerlink" title="项目中安装的包"></a>项目中安装的包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:mint-ui</span><br><span class="line">应用场景:App.vue中实现头部和底部</span><br><span class="line">安装方式:cnpm i mint-ui --save/-S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:vue-router</span><br><span class="line">应用场景:在App.vue中间要呈现内容的时候，使用它</span><br><span class="line">安装方式:cnpm i vue-router -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:vue-resource</span><br><span class="line">应用场景:在首页轮播功能获取轮播数据的时候</span><br><span class="line">安装方式:cnpm i vue-resource -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:momentjs</span><br><span class="line">应用场景:在newslist.vue中对服务器返回的时间过滤的时候</span><br><span class="line">安装方式:cnpm i moment -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:jquery</span><br><span class="line">应用场景:获取textarea的值的时候</span><br><span class="line">安装方式:cnpm i jquery -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包:vue-preview</span><br><span class="line">使用场景:图片详情中，进行缩略图预览</span><br><span class="line">安装方式:cnpm i vue-preview -S</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包：vueX</span><br><span class="line">使用场景：调节组件之间的状态，传值</span><br><span class="line">安装方式：npm install vuex --save</span><br></pre></td></tr></table></figure>
+<h2 id="webpack包"><a href="#webpack包" class="headerlink" title="webpack包"></a>webpack包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包：file-loader</span><br><span class="line">应用场景:在导入mui的样式的时候，需要导入字体文件mui.ttf</span><br><span class="line">安装方式:cnpm i file-loader --save-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">包：url-loader</span><br><span class="line">应用场景:打包时需要将webpack.config.dev.js中的file-loader改成url-loader压缩对图片的打包</span><br><span class="line">安装方式:cnpm i url-loader --save-dev</span><br></pre></td></tr></table></figure>
+<h1 id="Webpack打包"><a href="#Webpack打包" class="headerlink" title="Webpack打包"></a>Webpack打包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">1、在项目根目录下创建一个生产阶段的webpack.config.prod.js配置文件</span><br><span class="line">	注意:生产阶段配置文件中的内容，就是在开发阶段的基础上，多写一些针对生产环境的配置</span><br><span class="line"></span><br><span class="line">2、在package.json中增加一个scripts的配置</span><br><span class="line">	&quot;build&quot;:&quot;webpack --progress --config webpack.config.prod.js&quot;</span><br><span class="line">	</span><br><span class="line">3、将webpack.config.dev/prod.js中的file-loader图片格式 改成url-loader</span><br><span class="line"></span><br><span class="line">4、对我们项目中es6的代码转es5【babel】</span><br><span class="line">	参考:https://babeljs.io/docs/setup/#installation 选择webpack构建工具</span><br><span class="line">	</span><br><span class="line">	4.1、安装包</span><br><span class="line">		cnpm i babel-loader babel-core babel-preset-env --save-dev</span><br><span class="line">	</span><br><span class="line">	4.2、使用</span><br><span class="line">		在当前根目录下，创建一个babel的配置文件，写好预设代码</span><br><span class="line">			&#123;</span><br><span class="line">			    &quot;presets&quot;: [&quot;env&quot;]</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		在webpack.config.prod.js中对js进行转换</span><br><span class="line">			&#123; </span><br><span class="line">                test: /\.js$/, </span><br><span class="line">                exclude: /node_modules/, </span><br><span class="line">                loader: &quot;babel-loader&quot; </span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: /vue-preview.src.*?js$/,</span><br><span class="line">                loader: &apos;babel-loader&apos;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">5、对bundle.js和index.html压缩</span><br><span class="line">	压缩bundle.js</span><br><span class="line">		参考:https://cn.vuejs.org/v2/guide/deployment.html</span><br><span class="line">		在 webpack.config.prod.js 中的plugins:[]中配置</span><br><span class="line">			new webpack.DefinePlugin(&#123;</span><br><span class="line">	            &apos;process.env&apos;: &#123;</span><br><span class="line">	              NODE_ENV: &apos;&quot;production&quot;&apos;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;),</span><br><span class="line">	        new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">	            compress: &#123;</span><br><span class="line">	                warnings: false //压缩警告</span><br><span class="line">	            &#125;,</span><br><span class="line">	            comments: false //去掉版权信息等注释</span><br><span class="line">	        &#125;)</span><br><span class="line">   	</span><br><span class="line">   	压缩index.html</span><br><span class="line">   		参考:https://github.com/jantimon/html-webpack-plugin</span><br><span class="line">   		https://github.com/kangax/html-minifier#options-quick-reference</span><br><span class="line">		在 webpack.config.prod.js 中的plugins:[]中配置	</span><br><span class="line">			new HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:&apos;./template.html&apos;,//参照文件</span><br><span class="line">            filename:&apos;index.html&apos; //生成的index.html</span><br><span class="line">			minify:&#123;</span><br><span class="line">                collapseWhitespace:true,//压缩空格</span><br><span class="line">                removeComments:true,//去除注释</span><br><span class="line">                minifyJS:true,//压缩js</span><br><span class="line">                minifyCSS:true//压缩css</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">6、在main.js中引入axios，并Vue.prototype.$axios = axios</span><br><span class="line">		将页面中原先的</span><br><span class="line">		this.$http.get(url).then(response=&gt;&#123;</span><br><span class="line">			this.xxx = response.body.message</span><br><span class="line">		&#125;)</span><br><span class="line">		</span><br><span class="line">		修改成</span><br><span class="line">		this.axios.get(url).then(response=&gt;&#123;</span><br><span class="line">			this.xxx = response.data.message</span><br><span class="line">		&#125;)</span><br><span class="line">		</span><br><span class="line">7、对bundle.js进行优化</span><br><span class="line">	从图片：</span><br><span class="line">	将webpack.config.prod.js中图片打包的url-loader改成</span><br><span class="line">	loader:&quot;url-loader?limit=4000&amp;name=images/[name]-[hash:5].[ext]&quot;</span><br><span class="line">	详情请见我的git“Vue项目”</span><br><span class="line">	</span><br><span class="line">	从第三方包：webpack.config.prod.js中</span><br><span class="line">	entry:</span><br><span class="line">		改成对象，多入口</span><br><span class="line">		</span><br><span class="line">	output</span><br><span class="line">		改成多出口</span><br><span class="line">		</span><br><span class="line">	plugin</span><br><span class="line">		见代码</span><br><span class="line"></span><br><span class="line">    cnpm i clean-webpack-plugin --save-dev</span><br><span class="line">    //打包之前，删除dist目录，写在其他插件前面</span><br><span class="line">    webpack.config.prod.js中plugins:[</span><br><span class="line">      new CleanWebpackPlugin(&apos;dist&apos;)</span><br><span class="line">    ]</span><br><span class="line">    </span><br><span class="line">  抽离第三方样式：</span><br><span class="line">   npm install --save-dev exteact-text-webpack-plugin</span><br><span class="line">   webpack.config.prod.js中</span><br><span class="line">   设置const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;)</span><br><span class="line">   修改module中的rules</span><br><span class="line">   use:[</span><br><span class="line">     &#123;loader: &quot;vue-style-loader&quot;&#125;,</span><br><span class="line">     &#123;loader: &quot;css-loader&quot;&#125;</span><br><span class="line">   ]</span><br><span class="line">   修改成 =======&gt;</span><br><span class="line">   use: ExtractTextPlugin.extract(&#123;</span><br><span class="line">     fallback: &quot;style-loader&quot;,</span><br><span class="line">     use: &quot;css-loader&quot;</span><br><span class="line">   &#125;)                    //抽离出来的样式，存放到css目录下</span><br><span class="line"> 然后在module最下面 添加 new ExtractTextPlugin(&quot;css/styles.css&quot;)</span><br><span class="line"> </span><br><span class="line"> 8、vue提供了路由懒加载（把每个组件从bundle.js中抽离出来，等需要的时候，再按需加载...）</span><br><span class="line">	第一步：安装 https://babeljs.io/docs/plugins/syntax-dynamic-import/</span><br><span class="line">	cnpm install --save-dev babel-plugin-syntay-dynamic-import</span><br><span class="line">	</span><br><span class="line">	在.babelrc中加入</span><br><span class="line">	&quot;plugins&quot;:[&quot;syntax-dynamic-import&quot;]</span><br><span class="line">	</span><br><span class="line">	第二步：把router.js中，导入组件的方式改成 const Foo = () =&gt; import(&apos;./Foo.vue&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>直接使用我的github中的   “Vue项目” 即可</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/21/Vue项目相关设置&Webpack打包/">Vue项目相关设置</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">LIUJF</a></p>
+        <p><span>发布时间:</span>2017-12-21, 19:16:06</p>
+        <p><span>最后更新:</span>2017-12-21, 19:17:12</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/21/Vue项目相关设置&Webpack打包/" title="Vue项目相关设置">git@github.com:gitRiven/liujianfeng.git/2017/12/21/Vue项目相关设置&amp;Webpack打包/</a>
+            <span class="copy-path" data-clipboard-text="原文: git@github.com:gitRiven/liujianfeng.git/2017/12/21/Vue项目相关设置&amp;Webpack打包/　　作者: LIUJF" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/12/21/web页面访问的流程/">
+                    web页面访问的流程
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/21/Vue-Webpack安装/">
+                    Vue-Webpack安装
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目开启"><span class="toc-number">1.</span> <span class="toc-text">Vue项目开启</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载基础包"><span class="toc-number">1.1.</span> <span class="toc-text">下载基础包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#首页"><span class="toc-number">2.</span> <span class="toc-text">首页</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件创建"><span class="toc-number">2.1.</span> <span class="toc-text">文件创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监控页面变化-route"><span class="toc-number">2.2.</span> <span class="toc-text">监控页面变化($route)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#轮播图子组件-Mint-ui-父子组件props"><span class="toc-number">2.3.</span> <span class="toc-text">轮播图子组件(Mint-ui 父子组件props)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文章页面"><span class="toc-number">3.</span> <span class="toc-text">文章页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#全局时间过滤器-moment-filter"><span class="toc-number">3.1.</span> <span class="toc-text">全局时间过滤器(moment,filter)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回上一个页面"><span class="toc-number">3.2.</span> <span class="toc-text">返回上一个页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文字换行"><span class="toc-number">3.3.</span> <span class="toc-text">文字换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取页面的参数"><span class="toc-number">3.4.</span> <span class="toc-text">获取页面的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图文列表（UI）"><span class="toc-number">3.5.</span> <span class="toc-text">图文列表（UI）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评论子组件-Mint-ui-UI"><span class="toc-number">3.6.</span> <span class="toc-text">评论子组件(Mint-ui,UI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按钮模块子组件-emit"><span class="toc-number">3.7.</span> <span class="toc-text">按钮模块子组件($emit)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue高级使用"><span class="toc-number">4.</span> <span class="toc-text">Vue高级使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取文档中的内容-refs"><span class="toc-number">4.1.</span> <span class="toc-text">获取文档中的内容($refs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义组件传值"><span class="toc-number">4.2.</span> <span class="toc-text">自定义组件传值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emit-v-on"><span class="toc-number">4.2.1.</span> <span class="toc-text">$emit/v-on</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跳转页面-router-push"><span class="toc-number">4.3.</span> <span class="toc-text">跳转页面($router.push)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue仓库的使用"><span class="toc-number">4.4.</span> <span class="toc-text">Vue仓库的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#main-js基本设置"><span class="toc-number">4.4.1.</span> <span class="toc-text">main.js基本设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面发送数据，仓库接收-commit-getters"><span class="toc-number">4.4.2.</span> <span class="toc-text">页面发送数据，仓库接收(commit,getters)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面从仓库中获取数据-getters"><span class="toc-number">4.4.3.</span> <span class="toc-text">页面从仓库中获取数据(getters)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的生命周期"><span class="toc-number">4.5.</span> <span class="toc-text">Vue的生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目中安装的包"><span class="toc-number">5.</span> <span class="toc-text">项目中安装的包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack包"><span class="toc-number">5.1.</span> <span class="toc-text">webpack包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Webpack打包"><span class="toc-number">6.</span> <span class="toc-text">Webpack打包</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Vue项目相关设置　| gitRiven's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/21/web页面访问的流程/" title="上一篇: web页面访问的流程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/21/Vue-Webpack安装/" title="下一篇: Vue-Webpack安装">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/字符数组遍历循环/">字符数组遍历循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/事件详解/">事件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/PHP基础/">PHP基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/面试题汇总未完善版/">面试题汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/web页面访问的流程/">web页面访问的流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue项目相关设置&Webpack打包/">Vue项目相关设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Vue-Webpack安装/">Vue-Webpack安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/浏览器相关/">浏览器相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/懒加载/">懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/跨域请求的几种方式/">跨域请求的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JavaScript继承的三种方式/">JavaScript继承的三种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/常用的20个正则表达式/">常用的20个正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/原型链的理解/">原型链的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/我的VSCode设置/">我的VSCode设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/MVC&MVP&MVVM/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/JQuery/">JQuery</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/Javascript/">Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML5/">HTML5</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/HTML/">HTML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/21/CSS/">CSS</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 LIUJF
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
